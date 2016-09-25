@@ -46,4 +46,57 @@ gulp serve
 |── gulp
 ```
 
+## create new view
+
+- create folder with view name
+- create html,controller.js and module.js files
+- put
+
+```
+(function () {
+  'use strict';
+
+  angular.module('myApp.pages.VIEW_NAME')
+    .controller('VIEW_NAMECtrl', VIEW_NAMECtrl);
+
+  function VIEW_NAMECtrl($scope) {
+
+  }
+
+
+})();
+```
+in the controller.js
+- create module.js using
+
+```
+(function () {
+  'use strict';
+
+  angular.module('myApp.pages.VIEW_NAME', [])
+      .config(routeConfig);
+
+  function routeConfig($stateProvider) {
+    $stateProvider
+        .state('VIEW_NAME', {
+          url: '/VIEW_NAME',
+          title: 'VIEW_NAME',
+          templateUrl: 'app/pages/VIEW_NAME/VIEW_NAME.html',
+          controller: 'VIEW_NAMECtrl',
+        });
+  }
+
+})();
+```
+- then inject the new module into the pages.module.js as
+
+```
+angular.module('myApp.pages', [
+  'ui.router',
+  'myApp.pages.view1',
+  'myApp.pages.view2',
+  'myapp.pages.VIEW_NAME'
+])
+```
+
 **important!** : under development
